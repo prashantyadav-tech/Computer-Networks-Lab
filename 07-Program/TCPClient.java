@@ -42,5 +42,6 @@ public class TCPClient
         pwrite.close();
         socketRead.close();
         keyRead.close();
+        clientsock.close();
     }
 }
