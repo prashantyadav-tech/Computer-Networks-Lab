@@ -6,47 +6,20 @@ repository.
 
 ## Experiments
 
-  ------------------------------------------------------------------------
-   No. Experiment            Language / tools
-  ---------------------------- --------------------- ---------------------
- 1 Three-node            NS-2, AWK
-   point-to-point        
-   network; duplex       
-   links, queue size,    
-   bandwidth and packet  
-   drops                 
+  ## Experiments
 
- 2 Ping and trace route  NS-2, AWK
-   over a six-node       
-   topology;             
-   congestion-related    
-   packet drops          
-
- 3 Ethernet LAN traffic  NS-2, AWK, XGraph
-   and congestion-window 
-   plotting              
-
- 4 CRC-CCITT (16-bit)    Java
-
- 5 Sliding-window        C
-
- 6 Bellman-Ford shortest Java
-   path / path-vector    
-   routing               
-
- 7 TCP client requests a Java sockets
-   filename; server      
-   returns file contents 
-
- 8 UDP datagram          Java sockets
-   client/server         
-
- 9 RSA encryption and    Java
-   decryption            
-
-10 Leaky-bucket          Java
-   congestion control    
-  ------------------------------------------------------------------------
+| No. | Experiment | Language / Tools |
+|---:|---|---|
+| 1 | Three-node point-to-point network with duplex links, queue size, bandwidth, and packet drops | NS-2, AWK |
+| 2 | Ping and trace route over a six-node topology with congestion-related packet drops | NS-2, AWK |
+| 3 | Ethernet LAN traffic and congestion-window plotting | NS-2, AWK, XGraph |
+| 4 | CRC-CCITT (16-bit) | Java |
+| 5 | Sliding-window protocol | C |
+| 6 | Bellman-Ford shortest path and path-vector routing | Java |
+| 7 | TCP client requests a filename; server returns file contents | Java Sockets |
+| 8 | UDP datagram client/server | Java Sockets |
+| 9 | RSA encryption and decryption | Java |
+| 10 | Leaky-bucket congestion control | Java |
 
 ## Requirements
 
