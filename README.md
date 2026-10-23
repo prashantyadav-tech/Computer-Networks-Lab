@@ -4,9 +4,9 @@ Lab programs for the BCS502 Computer Networks Lab.
 Check the source files in each experiment folder before running commands; filenames and class names must match the
 repository.
 
-## Experiments
+---
 
-  ## Experiments
+## Experiments
 
 | No. | Experiment | Language / Tools |
 |---:|---|---|
@@ -20,6 +20,8 @@ repository.
 | 8 | UDP datagram client/server | Java Sockets |
 | 9 | RSA encryption and decryption | Java |
 | 10 | Leaky-bucket congestion control | Java |
+
+---
 
 ## Requirements
 
@@ -40,12 +42,16 @@ Package availability varies by Ubuntu release. If `ns2`, `nam`, or
 `xgraph` is unavailable, use a compatible Linux environment with those
 tools installed.
 
+---
+
 ## Get the code
 
 ``` bash
 git clone https://github.com/prashantyadav-tech/Computer-Networks-Lab.git
 cd Computer-Networks-Lab
 ```
+
+---
 
 ## Run NS-2 experiments (1--3)
 
@@ -63,6 +69,8 @@ Experiment 2, use its corresponding TCL, AWK and trace files. For
 Experiment 3, run the TCL script first, then run the AWK analysis and
 XGraph using the filenames actually written by the script.
 
+---
+
 ## Compile and run Java programs (4, 6, 9--10)
 
 From the directory containing the source file:
@@ -77,6 +85,8 @@ containing `main`. They are not always identical. If a source declares a
 package, run it from the appropriate parent directory using its fully
 qualified class name. Follow the package declaration and class names in
 the source.
+
+---
 
 ## TCP sockets (Experiment 7)
 
@@ -99,6 +109,8 @@ The client requests a filename; the server must be running first. Keep
 both programs on the same host unless the client/server address is
 configured for another host.
 
+---
+
 ## UDP sockets (Experiment 8)
 
 Open two terminals in the source directory.
@@ -119,6 +131,8 @@ java UDPClient
 Start the server before the client. Check the source for the port and
 expected input.
 
+---
+
 ## Sliding window (Experiment 5)
 
 If the program is in C, compile and run it with:
@@ -129,6 +143,8 @@ gcc slidingwindow.c -o slidingwindow
 ```
 
 Replace `slidingwindow.c` with the actual source filename.
+
+---
 
 ## Notes
 
