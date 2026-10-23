@@ -1,285 +1,169 @@
-# Computer Networks Lab
+# Computer Networks Lab (BCS502)
 
-A collection of Computer Networks laboratory programs implemented using **TCL, NS-2 (Network Simulator 2), and AWK**.
+Lab programs for the BCS502 Computer Networks Lab. 
+Check the source files in each experiment folder before running commands; filenames and class names must match the
+repository.
 
----
+## Experiments
 
-## Table of Contents
+  ------------------------------------------------------------------------
+                           No. Experiment            Language / tools
+  ---------------------------- --------------------- ---------------------
+                             1 Three-node            NS-2, AWK
+                               point-to-point        
+                               network; duplex       
+                               links, queue size,    
+                               bandwidth and packet  
+                               drops                 
 
-- [Overview](#overview)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Clone the Repository](#clone-the-repository)
-- [Understanding the Files](#understanding-the-files)
-- [Executing a TCL Simulation](#executing-a-tcl-simulation)
-- [Analyzing Results Using AWK](#analyzing-results-using-awk)
-- [Viewing Simulation Output](#viewing-simulation-output)
-- [Troubleshooting](#troubleshooting)
+                             2 Ping and trace route  NS-2, AWK
+                               over a six-node       
+                               topology;             
+                               congestion-related    
+                               packet drops          
 
----
+                             3 Ethernet LAN traffic  NS-2, AWK, XGraph
+                               and congestion-window 
+                               plotting              
 
-## Overview
+                             4 CRC-CCITT (16-bit)    Java
 
-The programs use the following tools:
+                             5 Sliding-window        C
 
-- **TCL:** Defines the network topology, nodes, links, traffic, and simulation events.
-- **NS-2:** Executes the TCL scripts and simulates network behavior.
-- **NAM (Network Animator):** Visually displays network simulations when a program generates a NAM trace file.
-- **AWK:** Processes simulation trace files to calculate statistics such as packet drops and other performance metrics.
+                             6 Bellman-Ford shortest Java
+                               path / path-vector    
+                               routing               
 
----
+                             7 TCP client requests a Java sockets
+                               filename; server      
+                               returns file contents 
+
+                             8 UDP datagram          Java sockets
+                               client/server         
+
+                             9 RSA encryption and    Java
+                               decryption            
+
+                            10 Leaky-bucket          Java
+                               congestion control    
+  ------------------------------------------------------------------------
 
 ## Requirements
 
-A Linux environment is recommended.
+-   **Experiments 1--3:** NS-2, AWK (`gawk`), NAM; XGraph for Experiment
+    3 plots.
+-   **Experiments 4, 6--10:** Java JDK.
+-   **Experiment 5:** GCC, if using the C program.
+-   **Repository:** Git.
 
-You can use:
-- Ubuntu installed in VirtualBox.
-- Ubuntu or another compatible Linux distribution installed directly on your computer.
-- Linux through WSL2, provided the required packages and graphical applications are supported.
+On Ubuntu/Debian, install common tools:
 
-**Note:** NS-2 is an older network simulator. Installation may require compatibility adjustments on newer Linux distributions.
-
----
-
-## Installation
-
-### 1. Update the package lists
-
-On Ubuntu or Debian-based Linux, open a terminal and run:
-
-```bash
+``` bash
 sudo apt update
+sudo apt install default-jdk gcc gawk git ns2 nam xgraph
 ```
 
-### 2. Install the required tools
+Package availability varies by Ubuntu release. If `ns2`, `nam`, or
+`xgraph` is unavailable, use a compatible Linux environment with those
+tools installed.
 
-Install Tcl, AWK, NS-2, NAM, and Git:
+## Get the code
 
-```bash
-sudo apt install ns2 nam tcl gawk git
-```
-
-If you want to plot data using `xgraph`, install it separately:
-
-```bash
-sudo apt install xgraph
-```
-
-Package availability may vary by Linux distribution and release. If NS-2 or NAM is unavailable, consult the installation instructions for your distribution or use a compatible Linux environment.
-
-### 3. Verify the installation
-
-Check whether the commands are available:
-
-```bash
-ns
-awk --version
-```
-
-For NS-2, entering `ns` should open the NS-2 interpreter if the installation is working. Exit it by typing:
-
-```tcl
-exit
-```
-
-The GNU AWK version can be checked with `gawk --version` if the `awk --version` command is not supported.
-
----
-
-## Clone the Repository
-
-Clone this repository using Git:
-
-```bash
+``` bash
 git clone https://github.com/prashantyadav-tech/Computer-Networks-Lab.git
-```
-
-Navigate into the repository:
-
-```bash
 cd Computer-Networks-Lab
 ```
 
-List the files and directories:
+## Run NS-2 experiments (1--3)
 
-```bash
-ls
-```
+Run commands from the directory containing the corresponding files. For
+Experiment 1, for example:
 
-Navigate to the directory containing the program you want to execute. For example:
-
-```bash
-cd Program-01
-```
-
-**Important:** Run the commands from the directory containing the relevant TCL and AWK files, unless the program specifies different paths.
-
----
-
-## Understanding the Files
-
-The repository contains files with extensions such as:
-
-| Extension | Purpose |
-|---|---|
-| `.tcl` | Defines and runs a network simulation using NS-2. |
-| `.awk` | Analyzes trace files produced by a simulation. |
-
-For example, a program directory may contain:
-
-```text
-Program-01/
-├── p1.tcl
-└── p1.awk
-```
-
----
-
-## Executing a TCL Simulation
-
-### Step 1: Navigate to the program directory
-
-For example:
-
-```bash
-cd Program-01
-```
-
-### Step 2: Run the TCL script
-
-Execute the simulation using NS-2:
-
-```bash
+``` bash
 ns p1.tcl
+awk -f p1.awk p1.tr
+nam p1.nam
 ```
 
-Replace `p1.tcl` with the name of the TCL file you want to run.
+Use the actual trace and NAM filenames generated by the TCL script. For
+Experiment 2, use its corresponding TCL, AWK and trace files. For
+Experiment 3, run the TCL script first, then run the AWK analysis and
+XGraph using the filenames actually written by the script.
 
-### Step 3: Check the generated files
+## Compile and run Java programs (4, 6, 9--10)
 
-After the simulation finishes, list the files:
+From the directory containing the source file:
 
-```bash
-ls
+``` bash
+javac FileName.java
+java ClassName
 ```
 
-Depending on the script, it may generate files such as:
+`FileName.java` is the source filename; `ClassName` is the class
+containing `main`. They are not always identical. If a source declares a
+package, run it from the appropriate parent directory using its fully
+qualified class name. Follow the package declaration and class names in
+the source.
 
-- A trace file, for example `out.tr`.
-- A NAM animation file, for example `out.nam`.
+## TCP sockets (Experiment 7)
 
-The actual filenames are determined by the TCL script. If the script does not generate a trace file, check its configuration before proceeding to AWK analysis.
+Open two terminals in the source directory.
 
----
+**Terminal 1 --- server**
 
-## Analyzing Results Using AWK
-
-AWK is used to extract useful information from simulation trace files.
-
-For example, if your TCL script generates `out.tr` and your AWK script is named `p1.awk`, run:
-
-```bash
-awk -f p1.awk out.tr
+``` bash
+javac TCPServer.java TCPClient.java
+java TCPServer
 ```
 
-Here:
+**Terminal 2 --- client**
 
-- `awk` starts the AWK interpreter.
-- `-f p1.awk` tells AWK to read the analysis program from `p1.awk`.
-- `out.tr` is the input trace file.
-
-The AWK script processes the trace records and prints the statistics defined in the script.
-
-### Saving the output to a file
-
-To save the results instead of displaying them directly in the terminal:
-
-```bash
-awk -f p1.awk out.tr > output.txt
+``` bash
+java TCPClient
 ```
 
-View the saved results using:
+The client requests a filename; the server must be running first. Keep
+both programs on the same host unless the client/server address is
+configured for another host.
 
-```bash
-cat output.txt
+## UDP sockets (Experiment 8)
+
+Open two terminals in the source directory.
+
+**Terminal 1 --- server**
+
+``` bash
+javac UDPServer.java UDPClient.java
+java UDPServer
 ```
 
-**Important:** The AWK script must match the format and fields of the trace file generated by the corresponding TCL program. Use the filenames specified by your program rather than assuming every simulation generates `out.tr`.
+**Terminal 2 --- client**
 
----
-
-## Viewing Simulation Output
-
-### 1. View the trace file
-
-To inspect the raw simulation trace:
-
-```bash
-less out.tr
+``` bash
+java UDPClient
 ```
 
-Press `q` to exit `less`.
+Start the server before the client. Check the source for the port and
+expected input.
 
-### 2. View the network animation
+## Sliding window (Experiment 5)
 
-If your TCL script generates a NAM file, run:
+If the program is in C, compile and run it with:
 
-```bash
-nam out.nam
+``` bash
+gcc slidingwindow.c -o slidingwindow
+./slidingwindow
 ```
 
-NAM should open a graphical window showing the network animation.
+Replace `slidingwindow.c` with the actual source filename.
 
-You may need a working graphical environment. In WSL2, this depends on WSLg or another supported GUI configuration. A Linux desktop in VirtualBox may be easier for graphical lab applications.
+## Notes
 
-### 3. Plot results using XGraph
-
-If the program generates data files intended for XGraph, run:
-
-```bash
-xgraph output1 output2
-```
-
-Replace `output1` and `output2` with the actual data filenames produced by your program. Install XGraph first if it is required and available for your distribution.
-
----
-
-## Troubleshooting
-
-### `ns: command not found`
-
-NS-2 is not installed or the executable is not available in your `PATH`.
-
-Verify the installation and consult your distribution's NS-2 setup instructions.
-
-### `nam: command not found`
-
-NAM may not be installed. Install it if available for your Linux distribution.
-
-### `awk: cannot open ...`
-
-AWK cannot find the specified input file. Check the filename and current directory:
-
-```bash
-pwd
-ls
-```
-
-### The trace file is not generated
-
-Check whether the TCL script opens and writes a trace file, and whether the simulation completes successfully.
-
-### The animation window does not open
-
-Check that the TCL script generates a NAM trace file and that a graphical environment is available.
-
-### Line-ending issues
-
-If a script was edited on Windows and fails when run on Linux, check its line endings. Linux scripts generally work best with LF line endings. In VS Code, the line-ending indicator in the status bar can be used to select LF before saving.
-
----
-
-## Contributing
-
-Contributions, corrections, and suggestions are welcome. If you find an issue or have an improvement, feel free to open an issue or submit a pull request.
+-   Run commands from the directory containing the files, unless a
+    package structure requires otherwise.
+-   If `javac` reports a filename/class mismatch, check the public class
+    name and source filename.
+-   If a port is already in use, stop the other server process or change
+    the port consistently in both client and server.
+-   The commands above use filenames as examples;
+    adjust them to the exact filenames in this repository.
