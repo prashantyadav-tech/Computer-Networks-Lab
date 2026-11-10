@@ -15,8 +15,7 @@ public class TCPServer
 
             // reading the file name from client
             InputStream istream = connectionsock.getInputStream();
-            BufferedReader fileRead = new BufferedReader(
-                    new InputStreamReader(istream));
+            BufferedReader fileRead = new BufferedReader(new InputStreamReader(istream));
             String fname = fileRead.readLine();
             System.out.println("User requested " + fname + " file contents");
 
