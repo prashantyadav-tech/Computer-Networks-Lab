@@ -21,8 +21,7 @@ public class TCPServer
 
             try
             {
-                BufferedReader contentRead = new BufferedReader(
-                        new FileReader(fname));
+                BufferedReader contentRead = new BufferedReader(new FileReader(fname));
                 System.out.println("File found");
 
                 // keeping output stream ready to send the contents
@@ -41,7 +40,7 @@ public class TCPServer
             catch (Exception e)
             {
                 // e.printStackTrace();
-                System.out.println("File not Found");
+                System.out.println("File not found");
             }
             fileRead.close();
             connectionsock.close();
