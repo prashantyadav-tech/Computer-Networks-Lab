@@ -9,8 +9,7 @@ public class TCPClient
 
         // reading the file name from keyboard. Uses input streams
         System.out.println("Enter the file name");
-        BufferedReader keyRead = new BufferedReader(
-                new InputStreamReader(System.in));
+        BufferedReader keyRead = new BufferedReader(new InputStreamReader(System.in));
         String fname = keyRead.readLine();
 
         // sending the file name to server
@@ -20,13 +19,12 @@ public class TCPClient
 
         // receiving the contents from server. Uses input stream
         InputStream istream = clientsock.getInputStream();
-        BufferedReader socketRead = new BufferedReader(
-                new InputStreamReader(istream));
+        BufferedReader socketRead = new BufferedReader(new InputStreamReader(istream));
 
         String str;
         if ((str = socketRead.readLine()) == null)
         {
-            System.out.println("File not Found");
+            System.out.println("File not found");
         }
         else
         {
