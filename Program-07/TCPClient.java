@@ -28,7 +28,7 @@ public class TCPClient
         }
         else
         {
-            System.out.println("File contents");
+            System.out.println("File contents:");
             do
             {
                 // reading line-by-line
